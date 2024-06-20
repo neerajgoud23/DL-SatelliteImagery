@@ -2,10 +2,6 @@
 
 
  
-### Code ###
-- [Google Colab Notebook - Data Processing (Part 1)](https://github.com/prodramp/DeepWorks/blob/main/DL-SatelliteImagery/Satellite_Imagery_Segmentation.ipynb)
-- [Google Colab Notebook - Deep Learing (Part 2 Base)](https://github.com/prodramp/DeepWorks/blob/main/DL-SatelliteImagery/Satellite_Imagery_DeepLearning-Base.ipynb)
-- [Google Colab Notebook - Deep Learing (Part 2 with Local Diagnostics)](https://github.com/prodramp/DeepWorks/blob/main/DL-SatelliteImagery/Satellite_Imagery_DeepLearning-LocalDiag.ipynb)
 
 
 ## Resources ## 
