@@ -1,35 +1,5 @@
 # Deep learning with Satellite Image #
 
-## Part 1 : Satellite Images Data Processing ##  
- <table class="table table-striped table-bordered table-vcenter">
-    <tr>
-        <td align="center"><b>🔥&nbsp;Deep learning Workshop for Satellite Imagery - Data Processing (Part 1/3)</b></td>
-    </tr>
-    <tr>
-        <td>
-            <div>
-                
-[![Deep learning Workshop for Satellite Imagery - Data Processing (Part 1/3)](https://img.youtube.com/vi/3Xn21RT-y7Y/0.jpg)](https://www.youtube.com/watch?v=3Xn21RT-y7Y)
-
-  </tr>
-</table>
-
-## Part 2 : Deep Learning for Satellite Imagery ##  
-
-<table class="table table-striped table-bordered table-vcenter">
-    <tr>
-        <td align="center"><b>🔥&nbsp;Deep learning Workshop for Satellite Imagery - Training & Prediction (Part 2/3)</b></td>
-    </tr>
-    <tr>
-        <td>
-            <div>
-                
-[![Deep learning Workshop for Satellite Imagery - Training & Prediction (Part 2/3)](https://img.youtube.com/vi/UBzMgr6yfpw/0.jpg)](https://www.youtube.com/watch?v=UBzMgr6yfpw)
-
-  </tr>
-</table>
-
-## Part 3 : Advance Concepts in Deep Learning for Satellite Imagery ##  
 
  
 ### Code ###
