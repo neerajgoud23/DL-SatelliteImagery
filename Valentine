@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hearts-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 107, 107, 0.3);
+            font-size: 20px;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .valentine-img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+            filter: drop-shadow(0 10px 20px rgba(255, 107, 107, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .no-btn {
+            background: #fff;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            position: absolute;
+            transition: all 0.2s ease;
+        }
+
+        .no-btn:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .message {
+            display: none;
+            margin-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .celebration.active {
+            display: block;
+        }
+
+        .final-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1001;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .final-message.show {
+            display: block;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .big-heart {
+            font-size: 5rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        .share-btn {
+            margin-top: 1rem;
+            background: #25d366;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .attempt-counter {
+            margin-top: 1rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+
+        .sad-message {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sad-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- Confetti canvas -->
+    <canvas class="celebration" id="confetti"></canvas>
+
+    <!-- Main Card -->
+    <div class="container" id="mainCard">
+        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute Bear" class="valentine-img" id="mainImage">
+        <h1>Will You Be My Valentine?</h1>
+        <p class="subtitle">I promise to make you smile every day! 💕</p>
+        
+        <div class="buttons" id="buttonContainer">
+            <button class="yes-btn" onclick="sayYes()">Yes ❤️</button>
+            <button class="no-btn" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No 💔</button>
+        </div>
+
+        <div class="attempt-counter" id="attemptCounter"></div>
+        <div class="sad-message" id="sadMessage">Please don't break my heart! 🥺</div>
+    </div>
+
+    <!-- Final Success Message -->
+    <div class="final-message" id="finalMessage">
+        <div class="big-heart">💖</div>
+        <h2 style="font-family: 'Dancing Script', cursive; color: #e74c3c; font-size: 2.5rem; margin: 1rem 0;">
+            You Said Yes!
+        </h2>
+        <p style="color: #7f8c8d; margin-bottom: 1rem;">
+            You've made me the happiest person alive!<br>
+            Happy Valentine's Day! 💕
+        </p>
+        <button class="yes-btn" onclick="createLink()" style="margin-top: 1rem;">
+            Create Your Own Link 🔗
+        </button>
+    </div>
+
+    <script>
+        let attempts = 0;
+        const messages = [
+            "Are you sure? 🥺",
+            "Pretty please? 🌹",
+            "I'll be sad... 😢",
+            "Don't do this! 💔",
+            "My heart is breaking! 😭",
+            "Think again! 🤔",
+            "Last chance! ⚠️",
+            "You can't say no! 🚫",
+            "Please reconsider! 🙏",
+            "I'm begging you! 🥺"
+        ];
+
+        const sadTexts = [
+            "Please don't break my heart! 🥺",
+            "Why are you doing this to me? 😢",
+            "I thought we had something special! 💔",
+            "My tears are falling... 😭",
+            "You're making me cry! 💧",
+            "I believe in us! Please! 🌟",
+            "Don't go breaking my heart! 🎵",
+            "I'm literally shaking right now! 😰"
+        ];
+
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            const heartSymbols = ['💕', '💖', '💗', '💓', '💝', '♥️'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (10 + Math.random() * 10) + 's';
+                heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+                container.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 20000);
+            }, 1000);
+        }
+
+        createHearts();
+
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const container = document.getElementById('buttonContainer');
+            const counter = document.getElementById('attemptCounter');
+            const sadMsg = document.getElementById('sadMessage');
+            
+            attempts++;
+            
+            // Calculate random position within container bounds
+            const containerRect = container.getBoundingClientRect();
+            const maxX = containerRect.width - btn.offsetWidth;
+            const maxY = containerRect.height - btn.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            btn.style.position = 'absolute';
+            
+            // Update counter with rotating messages
+            counter.textContent = messages[Math.min(attempts - 1, messages.length - 1)] || "You have to say yes! 😤";
+            
+            // Show sad message randomly
+            if (attempts > 2 && Math.random() > 0.5) {
+                sadMsg.textContent = sadTexts[Math.floor(Math.random() * sadTexts.length)];
+                sadMsg.classList.add('show');
+                setTimeout(() => sadMsg.classList.remove('show'), 2000);
+            }
+            
+            // Make button smaller each time
+            if (attempts > 5) {
+                btn.style.transform = `scale(${Math.max(0.5, 1 - attempts * 0.05)})`;
+            }
+            
+            // Eventually hide the no button completely
+            if (attempts > 10) {
+                btn.style.opacity = '0';
+                btn.style.pointerEvents = 'none';
+                counter.textContent = "There's only one choice now! ❤️";
+                counter.style.color = '#e74c3c';
+                counter.style.fontWeight = 'bold';
+            }
+        }
+
+        function sayYes() {
+            const confetti = document.getElementById('confetti');
+            const finalMsg = document.getElementById('finalMessage');
+            const mainCard = document.getElementById('mainCard');
+            
+            // Hide main card
+            mainCard.style.display = 'none';
+            
+            // Show celebration
+            confetti.classList.add('active');
+            finalMsg.classList.add('show');
+            
+            // Start confetti
+            startConfetti();
+            
+            // Change URL for sharing
+            if (history.pushState) {
+                history.pushState({}, document.title, window.location.pathname + '?answered=yes');
+            }
+        }
+
+        function createLink() {
+            const newUrl = window.location.origin + window.location.pathname;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(newUrl).then(() => {
+                alert('Link copied to clipboard! Send it to your crush! 💕\n\n' + newUrl);
+            }).catch(() => {
+                prompt('Copy this link and send it to your crush! 💕', newUrl);
+            });
+        }
+
+        // Confetti effect
+        function startConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd'];
+            
+            function Particle() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 10 + 5;
+                this.speedY = Math.random() * 3 + 2;
+                this.speedX = Math.random() * 2 - 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 10 - 5;
+            }
+            
+            Particle.prototype.update = function() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            };
+            
+            Particle.prototype.draw = function() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                ctx.restore();
+            };
+            
+            // Create particles
+            for (let i = 0; i < 150; i++) {
+                particles.push(new Particle());
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
